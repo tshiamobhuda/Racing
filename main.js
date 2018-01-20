@@ -2,6 +2,10 @@ var mainState = {
     preload: function () {
         game.load.image('player', 'assets/player.png');
         game.load.image('enemy', 'assets/enemy.png');
+
+        game.load.audio('explosion', 'assets/Explosion3.wav');
+        game.load.audio('explosion', 'assets/Explosion3.wav');
+        game.load.audio('score', 'assets/Score.wav');
     },
 
     create: function () {
@@ -28,6 +32,9 @@ var mainState = {
 
         game.add.text(220, 260, 'level',txtStyle);
         this.lblLevel = game.add.text(220, 280, '0', dgtStyle);
+
+        this.explosionSound = game.add.audio('explosion');
+        this.scoreSound = game.add.audio('score');
 
         this.enemies = game.add.group();
         this.timer = game.time.events.loop(2000, this.addEnemies, this);
@@ -58,12 +65,14 @@ var mainState = {
         if (this.enemies.countDead() > 0) {
             this.score += 1;
             this.lblScore.text = this.score.toString();
+            this.scoreSound.play();
         }
 
     },
 
     hitEnemy: function () {
         // @todo explode player, play explosion fx, decrease lives
+        this.explosionSound.play();
         game.state.start('main');
     }
 };
