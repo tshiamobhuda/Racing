@@ -28,7 +28,7 @@ var mainState = {
         game.physics.arcade.overlap(this.player, this.enemies, this.hitEnemy, null, this);
     },
 
-    addOneEmemy: function (x, y) {
+    addOneEnemy: function (x, y) {
         var enemy = game.add.sprite(x, y, 'enemy');
         this.enemies.add(enemy);
 
@@ -38,7 +38,7 @@ var mainState = {
     },
     
     addEnemies: function () {
-        this.addOneEmemy(Phaser.Utils.randomChoice(40,100), 0);
+        this.addOneEnemy(Phaser.Utils.randomChoice(40,100), 0);
     },
 
     hitEnemy: function () {
