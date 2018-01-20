@@ -5,7 +5,7 @@ var mainState = {
     },
 
     create: function () {
-        game.stage.backgroundColor = '#568a62';
+        game.stage.backgroundColor = '#6d785c';
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.world.enableBody = true;
 
@@ -54,6 +54,7 @@ var mainState = {
     addEnemies: function () {
         this.addOneEnemy(Phaser.Utils.randomChoice(40,100), 0);
 
+        // @todo refactor code... it always skips count for 1st dead enemy
         if (this.enemies.countDead() > 0) {
             this.score += 1;
             this.lblScore.text = this.score.toString();
