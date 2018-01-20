@@ -24,6 +24,8 @@ var mainState = {
             this.player.body.x = 100;
         else if (this.cursor.left.isDown)
             this.player.body.x = 40;
+
+        game.physics.arcade.overlap(this.player, this.enemies, this.hitEnemy, null, this);
     },
 
     addOneEmemy: function (x, y) {
@@ -37,6 +39,11 @@ var mainState = {
     
     addEnemies: function () {
         this.addOneEmemy(Phaser.Utils.randomChoice(40,100), 0);
+    },
+
+    hitEnemy: function () {
+        // @todo explode player, play explosion fx, decrease lives
+        game.state.start('main');
     }
 };
 
