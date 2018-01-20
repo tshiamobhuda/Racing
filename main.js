@@ -10,12 +10,16 @@ var mainState = {
 
         this.player = game.add.sprite(40, game.world.height - 80, 'player');
 
+        this.cursor = game.input.keyboard.createCursorKeys();
     },
 
     update: function () {
-        console.log('-- update firing --');
+        if (this.cursor.right.isDown)
+            this.player.body.velocity.x = 200;
+        else if (this.cursor.left.isDown)
+            this.player.body.velocity.x = -200;
     },
-}
+};
 
 var game = new Phaser.Game(200, 400, Phaser.CANVAS);
 game.state.add('main', mainState);
