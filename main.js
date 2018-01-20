@@ -14,6 +14,20 @@ var mainState = {
         this.cursor = game.input.keyboard.createCursorKeys();
 
         this.speed = 100;
+        this.score = 0;
+        this.level = 0;
+
+        var txtStyle = {font:'15px Arial', fill:'#333333'};
+        var dgtStyle = {font:'20px Arial', fill:'#333333'};
+
+        game.add.text(220, 20, 'score',txtStyle);
+        this.lblScore = game.add.text(220, 40, '0', dgtStyle);
+
+        game.add.text(220, 180, 'speed',txtStyle);
+        this.lblSpeed = game.add.text(220, 200, '0', dgtStyle);
+
+        game.add.text(220, 260, 'level',txtStyle);
+        this.lblLevel = game.add.text(220, 280, '0', dgtStyle);
 
         this.enemies = game.add.group();
         this.timer = game.time.events.loop(2000, this.addEnemies, this);
@@ -39,6 +53,12 @@ var mainState = {
     
     addEnemies: function () {
         this.addOneEnemy(Phaser.Utils.randomChoice(40,100), 0);
+
+        if (this.enemies.countDead() > 0) {
+            this.score += 1;
+            this.lblScore.text = this.score.toString();
+        }
+
     },
 
     hitEnemy: function () {
@@ -47,6 +67,6 @@ var mainState = {
     }
 };
 
-var game = new Phaser.Game(200, 400, Phaser.CANVAS);
+var game = new Phaser.Game(300, 400, Phaser.CANVAS);
 game.state.add('main', mainState);
 game.state.start('main');
