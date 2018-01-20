@@ -1,11 +1,15 @@
 var mainState = {
     preload: function () {
-        console.log('preload has fired!');
+        game.load.image('player', 'assets/player.png');
     },
 
     create: function () {
-        console.log('create has also fired!');
         game.stage.backgroundColor = '#568a62';
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        game.world.enableBody = true;
+
+        this.player = game.add.sprite(40, game.world.height - 80, 'player');
+
     },
 
     update: function () {
