@@ -1,7 +1,8 @@
 var mainState = {
     preload: function () {
-        game.load.image('player', 'assets/player.png');
-        game.load.image('enemy', 'assets/enemy.png');
+        game.load.image('player', 'assets/Player.png');
+        game.load.image('enemy', 'assets/Player.png');
+        game.load.image('bg', 'assets/Bg.png');
 
         game.load.audio('explosion', 'assets/Explosion3.wav');
         game.load.audio('explosion', 'assets/Explosion3.wav');
@@ -12,6 +13,9 @@ var mainState = {
         game.stage.backgroundColor = '#6d785c';
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.world.enableBody = true;
+
+        this.bgSprite = game.add.tileSprite(0, 0, 200, 400, 'bg');
+        this.bgSprite.autoScroll(0,100);
 
         this.player = game.add.sprite(40, game.world.height - 80, 'player');
 
